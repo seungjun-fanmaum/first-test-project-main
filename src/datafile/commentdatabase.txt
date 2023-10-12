@@ -1,0 +1,22 @@
+[{
+  "id": 2,
+  "content": "comment number 1 about post2"
+},{
+  "id": 2,
+  "content": "comment number 2 about post2"
+},{
+  "id": 2,
+  "content": "comment number 3 about post2"
+},{
+  "id": 3,
+  "content": "comment number 1 about post3"
+},{
+  "id": 3,
+  "content": "comment number 2 about post3"
+},{
+  "id": 5,
+  "content": "comment number 1 about post5"
+},{
+  "id": 7,
+  "content": "comment number 1 about post7"
+}]
