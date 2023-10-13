@@ -56,7 +56,7 @@ export class PostController {
   @ApiOperation({
     summary: '게시글 쓰기',
     description:
-      '게시글을 작성합니다. 예시) {"data": {"id": "6","title": "Im number 1","content": "good to see you! goodbye"}}',
+      '게시글을 작성합니다. 예시) {"data": {"id": 6,"userId":18453,"title": "Im number 1","content": "good to see you! goodbye"}}',
   })
   @ApiResponse({ status: 200, description: '작성을 성공하였습니다' })
   getData(@Body('data') data: CreatePostDto): boolean {

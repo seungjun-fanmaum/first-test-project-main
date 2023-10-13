@@ -7,7 +7,6 @@ import { CommentService } from './comment.service';
 import { ValidationPipe } from '@nestjs/common';
 import { APP_PIPE } from '@nestjs/core';
 import { APP_FILTER } from '@nestjs/core';
-import { AllExceptionsFilter } from './AllExceptionsFilter';
 
 @Module({
   // imports: [UserModule],
@@ -18,10 +17,6 @@ import { AllExceptionsFilter } from './AllExceptionsFilter';
     {
       provide: APP_PIPE,
       useClass: ValidationPipe,
-    },
-    {
-      provide: APP_FILTER,
-      useClass: AllExceptionsFilter,
     },
   ],
 })
