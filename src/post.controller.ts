@@ -38,19 +38,6 @@ export class PostController {
     return this.appService.getPosts(filePath, pageNumber);
   }
 
-  //게시글이 몇개인지 가져오기
-  // @Get('/pagenum')
-  // @ApiOperation({
-  //   summary: '게시글 개수 조회',
-  //   description: '모든 게시글의 개수를 불러옵니다.',
-  // })
-  // @ApiResponse({ status: 200, description: '조회에 성공하였습니다' })
-  // // @ApiResponse({ status: 404, description: '조회에 실패하였습니다' })
-  // getPostsNumber(@Headers('pageNumber') page: number): Promise<any[]> {
-  //   const filePath = 'src/datafile/database.txt';
-  //   return this.appService.getPostsNumber(filePath);
-  // }
-
   //게시글 하나 가져오기
   @Get(':id')
   @ApiOperation({
