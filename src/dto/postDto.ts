@@ -6,9 +6,9 @@ import {
   isNumber,
 } from 'class-validator';
 
-export class CreatePostDto {
-  // @IsNumber()
-  // readonly id: number;
+export class PostDto {
+  @IsNumber()
+  readonly id: number;
 
   @IsNumber()
   readonly userId: number;
