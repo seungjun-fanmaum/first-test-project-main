@@ -1,6 +1,6 @@
 import { IsNumber, IsString } from 'class-validator';
 
-export class CreateCommentDto {
+export class CommentDto {
   @IsNumber()
   readonly id: number;
 

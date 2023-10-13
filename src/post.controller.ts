@@ -31,10 +31,8 @@ export class PostController {
   })
   @ApiResponse({ status: 200, description: '조회에 성공하였습니다' })
   getPosts(@Query('pageNumber') pageNumber: number): PostAndCountDto {
+    console.log('모든 게시글 요청됨.');
     const filePath = 'src/datafile/database.txt';
-    // const pageNumber=parseInt(page,10);
-    console.log('게시물조회요청');
-
     return this.appService.getPosts(filePath, pageNumber);
   }
 
@@ -46,8 +44,8 @@ export class PostController {
   })
   @ApiResponse({ status: 200, description: '조회에 성공하였습니다' })
   getOnePost(@Param('id') id: number): PostDto {
+    console.log('게시글 한개 요청됨.');
     const filePath = 'src/datafile/database.txt';
-
     return this.appService.getOnePost(id, filePath);
   }
 
@@ -62,6 +60,7 @@ export class PostController {
   })
   @ApiResponse({ status: 200, description: '작성을 성공하였습니다' })
   getData(@Body('data') data: CreatePostDto): boolean {
+    console.log('게시글 쓰기 요청됨.');
     const filePath = 'src/datafile/database.txt';
     const result = data;
     this.appService.writePost(filePath, result);

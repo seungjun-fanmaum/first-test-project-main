@@ -68,7 +68,7 @@ export class PostService {
       };
 
       return createPostDto;
-    } catch {
+    } catch (error) {
       throw new InternalServerErrorException(
         '한개의 게시글을 읽어오는 중에 오류 발생',
       );
@@ -116,7 +116,7 @@ export class PostService {
       }
 
       fs.writeFileSync(filePath, result);
-    } catch {
+    } catch (error) {
       throw new InternalServerErrorException(
         '게시물을 생성하는 중에 오류 발생',
       );
