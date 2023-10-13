@@ -30,7 +30,7 @@ export class PostController {
     description: '모든 게시글을 불러옵니다.',
   })
   @ApiResponse({ status: 200, description: '조회에 성공하였습니다' })
-  getPosts(@Query('pageNumber') pageNumber: number): Promise<PostAndCountDto> {
+  getPosts(@Query('pageNumber') pageNumber: number): PostAndCountDto {
     const filePath = 'src/datafile/database.txt';
     // const pageNumber=parseInt(page,10);
     console.log('게시물조회요청');
@@ -61,10 +61,10 @@ export class PostController {
       '게시글을 작성합니다. 예시) {"data": {"id": "6","title": "Im number 1","content": "good to see you! goodbye"}}',
   })
   @ApiResponse({ status: 200, description: '작성을 성공하였습니다' })
-  async getData(@Body('data') data: CreatePostDto): Promise<boolean> {
+  getData(@Body('data') data: CreatePostDto): boolean {
     const filePath = 'src/datafile/database.txt';
     const result = data;
-    await this.appService.writePost(filePath, result);
+    this.appService.writePost(filePath, result);
     return true;
   }
 }

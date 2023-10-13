@@ -16,7 +16,7 @@ export class PostService {
   //예외처리 필터에서 처리
 
   //모든게시글 가져오기
-  async getPosts(filePath: string, page: number): Promise<PostAndCountDto> {
+  getPosts(filePath: string, page: number): PostAndCountDto {
     try {
       const data = fs.readFileSync(filePath, 'utf8');
       const jsonData = JSON.parse(data);
@@ -76,7 +76,7 @@ export class PostService {
   }
 
   //게시글 작성하기
-  async writePost(filePath: string, newData: CreatePostDto): Promise<void> {
+  writePost(filePath: string, newData: CreatePostDto): void {
     try {
       // 기존 파일 내용을 읽기
       const data = fs.readFileSync(filePath, 'utf8');
@@ -115,14 +115,7 @@ export class PostService {
         result = '[' + nnewData + ']';
       }
 
-      return new Promise<void>((resolve, reject) => {
-        fs.writeFile(filePath, result, (err) => {
-          if (err) {
-            reject(err);
-          }
-          resolve();
-        });
-      });
+      fs.writeFileSync(filePath, result);
     } catch {
       throw new InternalServerErrorException(
         '게시물을 생성하는 중에 오류 발생',
