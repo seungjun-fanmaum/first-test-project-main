@@ -6,6 +6,7 @@ import {
   Body,
   Redirect,
   Query,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { PostService } from './post.service';
 import { ApiTags, ApiOperation, ApiBody, ApiResponse } from '@nestjs/swagger';
@@ -14,6 +15,7 @@ import { UseFilters } from '@nestjs/common';
 import { HttpExceptionFilter } from '../custom-exception.filter';
 import { PostAndCountDto } from '../dto/postsAndCountDto';
 import { PostDto } from '../dto/postDto';
+import { IsIn, IsInt, IsNumber, IsPositive, isInt } from 'class-validator';
 
 //article에 대한 crud이다.
 @ApiTags('article에 대한 api')
@@ -29,8 +31,11 @@ export class PostController {
     description: '모든 게시글을 불러옵니다.',
   })
   @ApiResponse({ status: 200, description: '조회에 성공하였습니다' })
-  getPosts(@Query('pageNumber') pageNumber: number): PostAndCountDto {
-    console.log('모든 게시글 요청됨.');
+  getPosts(
+    @Query('pageNumber', new ParseIntPipe())
+    pageNumber: number,
+  ): PostAndCountDto {
+    console.log('모든 게시글 요청됨.' + pageNumber + ' :' + typeof pageNumber);
     const filePath = 'src/datafile/database.txt';
     return this.postService.getPosts(filePath, pageNumber);
   }

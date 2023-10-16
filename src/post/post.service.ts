@@ -36,8 +36,8 @@ export class PostService {
     //   pageCount: pageCount,
     // };
     const postAndCountDto = plainToInstance(PostAndCountDto, {
-      items,
-      pageCount,
+      postDto: items,
+      pageCount: pageCount,
     });
 
     return postAndCountDto;
