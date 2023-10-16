@@ -4,24 +4,23 @@ import {
   Param,
   Post,
   Body,
-  Headers,
   Redirect,
   Query,
 } from '@nestjs/common';
 import { PostService } from './post.service';
 import { ApiTags, ApiOperation, ApiBody, ApiResponse } from '@nestjs/swagger';
-import { CreatePostDto } from './dto/createPostDto';
+import { CreatePostDto } from '../dto/createPostDto';
 import { UseFilters } from '@nestjs/common';
-import { HttpExceptionFilter } from './http-exception.filter';
-import { PostAndCountDto } from './dto/postsAndCountDto';
-import { PostDto } from './dto/postDto';
+import { HttpExceptionFilter } from '../custom-exception.filter';
+import { PostAndCountDto } from '../dto/postsAndCountDto';
+import { PostDto } from '../dto/postDto';
 
 //article에 대한 crud이다.
 @ApiTags('article에 대한 api')
 @Controller('posts')
 @UseFilters(HttpExceptionFilter)
 export class PostController {
-  constructor(private readonly appService: PostService) {}
+  constructor(private readonly postService: PostService) {}
 
   //게시글 모두 가져오기
   @Get()
@@ -33,7 +32,7 @@ export class PostController {
   getPosts(@Query('pageNumber') pageNumber: number): PostAndCountDto {
     console.log('모든 게시글 요청됨.');
     const filePath = 'src/datafile/database.txt';
-    return this.appService.getPosts(filePath, pageNumber);
+    return this.postService.getPosts(filePath, pageNumber);
   }
 
   //게시글 하나 가져오기
@@ -46,7 +45,7 @@ export class PostController {
   getOnePost(@Param('id') id: number): PostDto {
     console.log('게시글 한개 요청됨.');
     const filePath = 'src/datafile/database.txt';
-    return this.appService.getOnePost(id, filePath);
+    return this.postService.getOnePost(id, filePath);
   }
 
   //게시글 쓰기
@@ -63,7 +62,7 @@ export class PostController {
     console.log('게시글 쓰기 요청됨.');
     const filePath = 'src/datafile/database.txt';
     const result = data;
-    this.appService.writePost(filePath, result);
+    this.postService.writePost(filePath, result);
     return true;
   }
 }

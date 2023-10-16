@@ -5,7 +5,7 @@ import { PostDto } from './postDto';
 
 export class PostAndCountDto {
   @Type(() => PostDto)
-  postDto: PostDto;
+  postDto: PostDto[];
 
   @IsNumber()
   pageCount: number;

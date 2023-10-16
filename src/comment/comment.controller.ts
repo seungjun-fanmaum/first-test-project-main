@@ -1,8 +1,8 @@
 import { Controller, Get, Param, UseFilters } from '@nestjs/common';
 import { CommentService } from './comment.service';
 import { ApiTags, ApiOperation, ApiBody, ApiResponse } from '@nestjs/swagger';
-import { HttpExceptionFilter } from './http-exception.filter';
-import { CommentDto } from './dto/commentDto';
+import { HttpExceptionFilter } from '../custom-exception.filter';
+import { CommentDto } from '../dto/commentDto';
 
 //comment에 대한 crud이다.
 @ApiTags('comment에 대한 api')
